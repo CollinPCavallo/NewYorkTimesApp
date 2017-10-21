@@ -32,8 +32,13 @@ $('document').ready(function(){
 	  url: url,
 	  method: 'GET',
 	}).done(function(result) {
-	  console.log(result);
-	  $("#articles").text(JSON.stringify(result));
+		var docs = result.response.docs;
+	  for (var i = 0; i < docs.length; i++) {
+	  	var articleDiv = $("<div>");
+	  	articleDiv.addClass("well");
+	  	articleDiv.html("<a>");
+	  	$("#articles").append(JSON.stringify(docs[i]));
+	  }
 	}).fail(function(err) {
 	  throw err;
 	});
